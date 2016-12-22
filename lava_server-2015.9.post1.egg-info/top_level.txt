@@ -1,0 +1,10 @@
+linaro_django_xmlrpc
+lava_projects
+dashboard_app
+lava
+lava_scheduler_daemon
+lava_results_app
+lava_scheduler_app
+lava_markitup
+google_analytics
+lava_server

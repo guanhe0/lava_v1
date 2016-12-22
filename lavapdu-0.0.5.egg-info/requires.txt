@@ -1,0 +1,4 @@
+daemon
+lockfile
+pexpect
+psycopg2

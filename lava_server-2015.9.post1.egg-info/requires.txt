@@ -1,0 +1,22 @@
+django >= 1.6.1
+django-openid-auth >= 0.5
+django-restricted-resource >= 0.2.7
+django-tables2 >= 0.13.0
+docutils >= 0.6
+lava-tool >= 0.2
+south >= 1.0
+versiontools >= 1.8
+markdown >= 2.0.3
+psycopg2
+markupsafe
+mocker >= 1.0
+netifaces >= 0.10.4
+django-kvstore
+pyzmq
+jinja2
+django-auth-ldap >= 1.1.8
+voluptuous
+pygments >= 1.2
+lava-dispatcher
+simplejson
+twisted

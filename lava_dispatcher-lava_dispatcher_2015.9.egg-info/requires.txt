@@ -1,0 +1,11 @@
+json-schema-validator >= 2.3
+lava-tool >= 0.4
+pexpect >= 2.3
+configglue
+PyYAML
+pyserial >= 2.6
+pyliblzma >= 0.5.3
+requests
+netifaces >= 0.10.0
+nose
+pyzmq

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+retry=0
+max_retry=3
+
+while [ 1 ]
+do
+    yum -y update
+    yum -e 0 -y -q install "$@"
+    return_vale=$?
+    [ $return_value -eq 0 ] && break
+    [ $retry -eq $max_retry ] && exit $return_value
+
+    echo "================================================="
+    echo "$retry  Install failed... Retrying after some seconds"
+    echo "================================================="
+
+    sleep 60
+    retry=$((retry+1))
+done
