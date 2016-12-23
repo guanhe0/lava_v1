@@ -1,19 +1,20 @@
 #!/bin/sh
 
-retry=0
-max_retry=4
+retry=1
+max_retry=3
 
-while [ 1 ]
+while true
 do
-  DEBIAN_FRONTEND=noninteractive apt-get update
-  DEBIAN_FRONTEND=noninteractive apt-get install -y -q "$@"
-  return_value=$?
-  [ "$return_value" = 0 ] && break
-  [ "$retry" = "$max_retry" ] && exit $return_value
+    DEBIAN_FRONTEND=noninteractive apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get install -y -q "$@"
+    return_value=$?
+    [ $return_value -eq 0 ] && break
+    [ $retry -eq $max_retry ] && exit $return_value
 
-  echo "================================================="
-  echo "($retry) Install failed... Retrying after some seconds"
-  echo "================================================="
-  sleep 60
-  retry=$((retry+1))
+    echo "================================================="
+    echo "($retry) Install failed... Retrying after some seconds"
+    echo "================================================="
+
+    sleep 20
+    retry=$((retry+1))
 done

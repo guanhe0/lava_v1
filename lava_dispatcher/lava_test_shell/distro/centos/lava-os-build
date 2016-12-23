@@ -13,8 +13,3 @@ then
     exit 0
 fi
 
-if [ -f /etc/debian_version ]
-then
-    cat /etc/debian_version
-    exit 0
-fi

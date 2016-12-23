@@ -1,18 +1,20 @@
 #!/bin/sh
-retry=0
-max_retry=4
 
-while [ 1 ]
+retry=1
+max_retry=3
+
+while true
 do
-  dnf -y upgrade --refresh 
-  dnf -y install "$@"
-  return_value=$?
-  [ "$return_value" = 0 ] && break
-  [ "$retry" = "$max_retry" ] && exit $return_value
+    dnf -y upgrade --refresh
+    dnf -y install "$@"
+    return_value=$?
+    [ $return_value -eq 0 ] && break
+    [ $retry -eq $max_retry ] && exit $return_value
 
-  echo "================================================="
-  echo "($retry) Install failed... Retrying after some seconds"
-  echo "================================================="
-  sleep 60
-  retry=$((retry+1))
+    echo "================================================="
+    echo "($retry) Install failed... Retrying after some seconds"
+    echo "================================================="
+
+    sleep 20
+    retry=$((retry+1))
 done

@@ -3,28 +3,29 @@
 #set proxy in /etc/opkg/opkg.conf if required
 unset http_proxy
 
-retry=0
-max_retry=4
+retry=1
+max_retry=3
 
 which opkg
 rc=$?
 
-if [ "$rc" != 0 ]; then
-  echo "Error: OPKG package manager not found in the path."
-  exit $rc
+if [ $rc -ne 0 ]; then
+    echo "Error: OPKG package manager not found in the path."
+    exit $rc
 fi
 
-while [ 1 ]
+while true
 do
-  opkg update
-  opkg install "$@"
-  return_value=$?
-  [ "$return_value" = 0 ] && break
-  [ "$retry" = "$max_retry" ] && exit $return_value
+    opkg update
+    opkg install "$@"
+    return_value=$?
+    [ $return_value -eq 0 ] && break
+    [ $retry -eq $max_retry ] && exit $return_value
 
-  echo "================================================="
-  echo "($retry) Install failed... Retrying after some seconds"
-  echo "================================================="
-  sleep 60
-  retry=$((retry+1))
+    echo "================================================="
+    echo "($retry) Install failed... Retrying after some seconds"
+    echo "================================================="
+
+    sleep 20
+    retry=$((retry+1))
 done
